@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/WhalepassAPI.gd" type="Script" id=1]
+
+[node name="WhalepassAPI" type="Node"]
+script = ExtResource( 1 )
+game_id = "8945bcb6-d940-4771-a201-0891d81698d2"
+api_key = "b0fa80bdbb424f6e652fbc7dd80ec613"
+battlepass_id = "811fa5d4-ea2e-4660-9476-2ba3a98fd578"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+use_threads = true
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
