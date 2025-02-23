@@ -1,11 +1,11 @@
 extends Node
 
-onready var http_request = $HTTPRequest
+@onready var http_request = $HTTPRequest
 var player_id: String = ""
 
-export var game_id: String = ""  # Replace with your game ID
-export var api_key: String = ""  # Replace with your API Key
-export var battlepass_id: String = ""  # Replace with your Battlepass ID
+@export var game_id: String = ""  # Replace with your game ID
+@export var api_key: String = ""  # Replace with your API Key
+@export var battlepass_id: String = ""  # Replace with your Battlepass ID
 
 var request_queue: Array = []  # Queue to handle pending requests
 var is_request_active: bool = false  # Flag to track ongoing requests
@@ -26,21 +26,19 @@ func _ready():
 
 # Function to generate a unique player_id
 func generate_player_id() -> String:
-	return str(OS.get_unix_time()) + str(randi()).md5_text()
+	return str(Time.get_unix_time_from_system()) + str(randi()).md5_text()
 
 func save_player_id(_id: String):
-	var file = File.new()
-	if file.open("user://player_id.txt", File.WRITE) == OK:
-		file.store_string(player_id)
-		file.close()
+	var file = FileAccess.open("user://player_id.txt",FileAccess.WRITE)
+	file.store_string(player_id)
+	file.close()
 
 func load_player_id() -> String:
-	var file = File.new()
-	if file.file_exists("user://player_id.txt") and file.open("user://player_id.txt", File.READ) == OK:
-		var saved_id = file.get_as_text().strip_edges()
-		file.close()
-		return saved_id
-	return ""
+	var file = FileAccess.open("user://player_id.txt",FileAccess.WRITE)
+	var saved_id = file.get_as_text().strip_edges()
+	file.close()
+	return saved_id
+	#return ""
 
 # Queues a new HTTP request
 func queue_request(url: String, headers: Dictionary, method: int, data = null):
@@ -52,11 +50,11 @@ func _process_next_request():
 	if request_queue.size() > 0:
 		is_request_active = true
 		var request = request_queue.pop_front()
-		var header_array: PoolStringArray = []
+		var header_array: PackedStringArray = []
 		for key in request.headers.keys():
 			header_array.append(key + ": " + request.headers[key])
 
-		var err = http_request.request(request.url, header_array, true, request.method, to_json(request.data) if request.data else "")
+		var err = http_request.request(request.url, header_array, request.method, JSON.new().stringify(request.data) if request.data else "")
 		if err != OK:
 			print("Failed to send request: ", err)
 

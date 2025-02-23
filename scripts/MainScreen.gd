@@ -1,9 +1,9 @@
 extends Control
 
 # Reference to the WhalepassAPI node (handles external API interactions)
-onready var whalepass = $WhalepassAPI
+@onready var whalepass = $WhalepassAPI
 # Reference to the container that will be shown or hidden based on request status
-onready var vbox_container = $VBoxContainer
+@onready var vbox_container = $VBoxContainer
 
 # Updates the UI based on the request status
 func _physics_process(_delta):

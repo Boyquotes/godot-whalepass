@@ -1,97 +1,91 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://dw45n4bjyxwnt"]
 
-[ext_resource path="res://scenes/WhalepassAPI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/zwUqWaS.png" type="Texture" id=2]
-[ext_resource path="res://scripts/MainScreen.gd" type="Script" id=3]
+[ext_resource type="PackedScene" path="res://scenes/WhalepassAPI.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bad810sdcgi58" path="res://assets/zwUqWaS.png" id="2"]
+[ext_resource type="Script" path="res://scripts/MainScreen.gd" id="3"]
 
 [node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( -617, 523 )
-script = ExtResource( 3 )
+pivot_offset = Vector2(-617, 523)
+script = ExtResource("3")
 
 [node name="Interface" type="Control" parent="."]
+anchors_preset = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -300.0
-margin_top = -300.0
-margin_right = 300.0
-margin_bottom = 300.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
 
 [node name="ColorRect" type="ColorRect" parent="Interface"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Interface"]
 
-[node name="WhalepassLogo" type="Sprite" parent="Interface/CanvasLayer"]
-position = Vector2( 293, 55 )
-scale = Vector2( 0.17396, 0.17396 )
-texture = ExtResource( 2 )
+[node name="WhalepassLogo" type="Sprite2D" parent="Interface/CanvasLayer"]
+position = Vector2(293, 55)
+scale = Vector2(0.17396, 0.17396)
+texture = ExtResource("2")
 
-[node name="WhalepassAPI" parent="." instance=ExtResource( 1 )]
-game_id = "4ca27086-4ba2-4d41-af68-c88f933ca29e"
-api_key = "f2ad3b91a63620ccba2a14a5ff110b1c"
-battlepass_id = "4b835c56-fed5-4c8e-a269-4f6f1e9ebd50"
+[node name="WhalepassAPI" parent="." instance=ExtResource("1")]
+game_id = "e5de0f82-6b4c-4115-a8bc-22cd1dcffe67"
+api_key = "42adb0b97688063d8cbb3221b139e740"
+battlepass_id = "12aeb801-bc66-4024-bea1-fd69534bdbb0"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 175.0
-margin_top = 254.0
-margin_right = 425.0
-margin_bottom = 346.0
+layout_mode = 0
+offset_left = 175.0
+offset_top = 254.0
+offset_right = 425.0
+offset_bottom = 346.0
 
 [node name="RedirectPlayerButton" type="Button" parent="VBoxContainer"]
-margin_right = 250.0
-margin_bottom = 20.0
-hint_tooltip = "For getting a redirection link so player can connect or create a Whalepass account"
+layout_mode = 2
+tooltip_text = "For getting a redirection link so player can connect or create a Whalepass account"
 mouse_default_cursor_shape = 2
 text = "Redirect to Dashboard"
 flat = true
 
 [node name="IncrementExperienceButton" type="Button" parent="VBoxContainer"]
-margin_top = 24.0
-margin_right = 250.0
-margin_bottom = 44.0
-hint_tooltip = "Incrementing A Player's Experience Points"
+layout_mode = 2
+tooltip_text = "Incrementing A Player's Experience Points"
 mouse_default_cursor_shape = 2
 text = "Add Experience Points (SOFTCODE)"
 flat = true
 
 [node name="IncrementExperienceButton2" type="Button" parent="VBoxContainer"]
-margin_top = 48.0
-margin_right = 250.0
-margin_bottom = 68.0
-hint_tooltip = "Incrementing A Player's Experience Points"
+layout_mode = 2
+tooltip_text = "Incrementing A Player's Experience Points"
 mouse_default_cursor_shape = 2
 text = "Add Experience Points (HARDCODE)"
 flat = true
 
 [node name="GetPlayerProgressButton" type="Button" parent="VBoxContainer"]
-margin_top = 72.0
-margin_right = 250.0
-margin_bottom = 92.0
-hint_tooltip = "Getting Player's Base Progress"
+layout_mode = 2
+tooltip_text = "Getting Player's Base Progress"
 mouse_default_cursor_shape = 2
 text = "Get Player Progress"
 flat = true
 
 [node name="CompletePlayerChallenge" type="Button" parent="VBoxContainer"]
-margin_top = 96.0
-margin_right = 250.0
-margin_bottom = 116.0
-hint_tooltip = "Completing A Challenge For A Player"
+layout_mode = 2
+tooltip_text = "Completing A Challenge For A Player"
 mouse_default_cursor_shape = 2
 text = "Complete Challenge"
 flat = true
 
 [node name="BattlepassProgressButton" type="Button" parent="VBoxContainer"]
-margin_top = 120.0
-margin_right = 250.0
-margin_bottom = 140.0
-hint_tooltip = "Completing A Challenge For A Player"
+layout_mode = 2
+tooltip_text = "Completing A Challenge For A Player"
 mouse_default_cursor_shape = 2
 text = "Get Battlepass Progress"
 flat = true
